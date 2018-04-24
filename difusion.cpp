@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-  double T=0.5;
+  double T;
 	double D=1.0;
 	double dx=0.01;
 	double dt=0.01;
@@ -14,6 +14,7 @@ int main()
 	double * u = new double[N_x ];
 	double * u_old =new double[N_x];
 	double x =0.0;
+  int m = 1.0/dx;
   bool centinela=false;
 	for(int i=0;i<N_x;i++)
 	{
@@ -25,12 +26,12 @@ int main()
   {
 		for(int i=1;i<N_x - 1 ;i++)
 		{
-			u[i]= in_u[i] - ( D * (dt/(dx*dx)) * ( 2.0*in_u[i] - in_u[i-1] - in_u[i+1] ) );
+			u[i]= in_u[i] - ( D * (dt/(dx*dx)) * ( -2.0*in_u[i] + in_u[i-1] + in_u[i+1] ) );
 		}
 		for(int i=1;i<N_x - 1 ;i++)
 		{
 		    in_u[i]=u[i];
-        if(u[i]<=0.5)
+        if(u[m]<=0.5)
         {
           centinela=true;
         }

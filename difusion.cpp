@@ -7,7 +7,7 @@ int main()
 {
   double T;
 	double D=10.0;
-	double dt=0.00001;
+	double dt=1E-6;
   double alpha=0.1;
   double dx=pow(D*dt/alpha,0.5);
 	int N_x=2.0/ dx;

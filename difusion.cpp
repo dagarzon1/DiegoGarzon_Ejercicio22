@@ -6,9 +6,10 @@ using namespace std;
 int main()
 {
   double T;
-	double D=1.0;
-	double dx=0.01;
-	double dt=0.01;
+	double D=10.0;
+	double dt=0.00001;
+  double alpha=0.1;
+  double dx=pow(D*dt/alpha,0.5);
 	int N_x=2.0/ dx;
 	double * in_u = new double[N_x];
 	double * u = new double[N_x ];
@@ -24,9 +25,10 @@ int main()
   }
   while(!centinela)
   {
+    T=T+dt;
 		for(int i=1;i<N_x - 1 ;i++)
 		{
-			u[i]= in_u[i] - ( D * (dt/(dx*dx)) * ( -2.0*in_u[i] + in_u[i-1] + in_u[i+1] ) );
+			u[i]= in_u[i] + ( D * (dt/(dx*dx)) * ( -2.0*in_u[i] + in_u[i-1] + in_u[i+1] ) );
 		}
 		for(int i=1;i<N_x - 1 ;i++)
 		{
@@ -40,7 +42,7 @@ int main()
   for(int i=0;i<N_x;i++)
 	{
 		x=(dx*i);
-		cout<<x<<" "<<u[i]<<" "<<u_old[i]<<endl;
+		cout<<x<<" "<<u[i]<<" "<<u_old[i]<<" "<<T<<endl;
 	}
 return 0;
 }
